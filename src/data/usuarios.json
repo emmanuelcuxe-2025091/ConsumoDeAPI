@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "nombre": "emilio",
+        "edad": 12,
+        "rol": "ADMIN",
+        "estado": "INACTIVO"
+    },
+    {
+        "id": 12,
+        "nombre": "eduardo",
+        "edad": 0,
+        "rol": "ADMIN",
+        "estado": "ACTIVO"
+    },
+    {
+        "id": 1,
+        "nombre": "eduardo",
+        "edad": 0,
+        "rol": "ADMIN",
+        "estado": "ACTIVO"
+    },
+    {
+        "id": 34,
+        "nombre": "cartagena",
+        "edad": 0,
+        "rol": "USUARIO",
+        "estado": "ACTIVO"
+    }
+]
