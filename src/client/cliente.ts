@@ -1,3 +1,4 @@
+import { ResultadoConsumoApi, ErrorInfo } from "../models/apiUsuario";
 import { ApiUsuario } from "../models/apiUsuario";
 import { writeFile } from "fs/promises";
 
@@ -59,7 +60,7 @@ async function guardarResultado(
 
 }
 
-export async function consumirApiExterna() {
+export async function consumirApiExterna(): Promise<ResultadoConsumoApi> {
 
     const marcas: Record<string, number> = {};
 
@@ -88,12 +89,20 @@ export async function consumirApiExterna() {
 
     } catch (error: any) {
 
+        const errorInfo: ErrorInfo = {
+
+            tipo: error?.name ?? error?.cause?.code ?? "ErrorDesconocido",
+            mensaje: error?.message ?? String(error),
+            fecha: new Date().toISOString(),
+
+        };
+
         console.error("===================================");
         console.error("Error al consumir la API externa");
-        console.error(error);
+        console.error(errorInfo);
         console.error("===================================");
 
-        return { exito: false, error: error?.message ?? String(error) };
+        return { exito: false, error: errorInfo };
 
     }
 
