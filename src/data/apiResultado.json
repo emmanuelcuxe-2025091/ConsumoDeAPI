@@ -1,0 +1,71 @@
+{
+  "fecha_consulta": "2026-07-18T04:27:24.202Z",
+  "cantidad_registros": 10,
+  "tiempos_ejecucion_ms": {
+    "inicio": 1784348841991,
+    "despuesFetch": 1784348844184,
+    "despuesProcesar": 1784348844202
+  },
+  "datos": [
+    {
+      "id": 1,
+      "nombre": "Leanne Graham",
+      "email": "Sincere@april.biz",
+      "ciudad": "Gwenborough"
+    },
+    {
+      "id": 2,
+      "nombre": "Ervin Howell",
+      "email": "Shanna@melissa.tv",
+      "ciudad": "Wisokyburgh"
+    },
+    {
+      "id": 3,
+      "nombre": "Clementine Bauch",
+      "email": "Nathan@yesenia.net",
+      "ciudad": "McKenziehaven"
+    },
+    {
+      "id": 4,
+      "nombre": "Patricia Lebsack",
+      "email": "Julianne.OConner@kory.org",
+      "ciudad": "South Elvis"
+    },
+    {
+      "id": 5,
+      "nombre": "Chelsey Dietrich",
+      "email": "Lucio_Hettinger@annie.ca",
+      "ciudad": "Roscoeview"
+    },
+    {
+      "id": 6,
+      "nombre": "Mrs. Dennis Schulist",
+      "email": "Karley_Dach@jasper.info",
+      "ciudad": "South Christy"
+    },
+    {
+      "id": 7,
+      "nombre": "Kurtis Weissnat",
+      "email": "Telly.Hoeger@billy.biz",
+      "ciudad": "Howemouth"
+    },
+    {
+      "id": 8,
+      "nombre": "Nicholas Runolfsdottir V",
+      "email": "Sherwood@rosamond.me",
+      "ciudad": "Aliyaview"
+    },
+    {
+      "id": 9,
+      "nombre": "Glenna Reichert",
+      "email": "Chaim_McDermott@dana.io",
+      "ciudad": "Bartholomebury"
+    },
+    {
+      "id": 10,
+      "nombre": "Clementina DuBuque",
+      "email": "Rey.Padberg@karina.biz",
+      "ciudad": "Lebsackbury"
+    }
+  ]
+}
