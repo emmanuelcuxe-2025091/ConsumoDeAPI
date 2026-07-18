@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { json } from "stream/consumers";
 import { UsuarioService } from "../services/usuarioService";
 import { Usuario } from "../models/usuario";
+import { consumirApiExterna } from "../client/cliente";
 
 const usuarioService = new UsuarioService();
 
@@ -23,6 +24,18 @@ export async function router(req: IncomingMessage, res: ServerResponse) {
             res.end(JSON.stringify(usuarios));
 
             return; 
+
+        }
+
+        if (method === "GET" && url === "/api-externa") {
+
+            const resultado = await consumirApiExterna();
+
+            res.writeHead(resultado.exito ? 200 : 500);
+
+            res.end(JSON.stringify(resultado));
+
+            return;
 
         }
 
