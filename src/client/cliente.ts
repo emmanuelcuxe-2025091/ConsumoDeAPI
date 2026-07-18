@@ -63,25 +63,38 @@ export async function consumirApiExterna() {
 
     const marcas: Record<string, number> = {};
 
-    marcas["inicio"] = Date.now();
+    try {
 
-    const respuesta = await obtenerUsuariosDesdeApi();
-    marcas["despuesFetch"] = Date.now();
+        marcas["inicio"] = Date.now();
 
-    const usuarios = await procesarRespuesta(respuesta);
-    marcas["despuesProcesar"] = Date.now();
+        const respuesta = await obtenerUsuariosDesdeApi();
+        marcas["despuesFetch"] = Date.now();
 
-    await guardarResultado(usuarios, marcas);
-    marcas["final"] = Date.now();
+        const usuarios = await procesarRespuesta(respuesta);
+        marcas["despuesProcesar"] = Date.now();
 
-    console.log("===================================");
-    console.log("Consumo de API externa completado");
-    console.log(`Peticion HTTP: ${marcas["despuesFetch"] - marcas["inicio"]} ms`);
-    console.log(`Procesamiento: ${marcas["despuesProcesar"] - marcas["despuesFetch"]} ms`);
-    console.log(`Guardado JSON: ${marcas["final"] - marcas["despuesProcesar"]} ms`);
-    console.log(`Total: ${marcas["final"] - marcas["inicio"]} ms`);
-    console.log("===================================");
+        await guardarResultado(usuarios, marcas);
+        marcas["final"] = Date.now();
 
-    return { exito: true, datos: usuarios, tiempos: marcas };
+        console.log("===================================");
+        console.log("Consumo de API externa completado");
+        console.log(`Peticion HTTP: ${marcas["despuesFetch"] - marcas["inicio"]} ms`);
+        console.log(`Procesamiento: ${marcas["despuesProcesar"] - marcas["despuesFetch"]} ms`);
+        console.log(`Guardado JSON: ${marcas["final"] - marcas["despuesProcesar"]} ms`);
+        console.log(`Total: ${marcas["final"] - marcas["inicio"]} ms`);
+        console.log("===================================");
+
+        return { exito: true, datos: usuarios, tiempos: marcas };
+
+    } catch (error: any) {
+
+        console.error("===================================");
+        console.error("Error al consumir la API externa");
+        console.error(error);
+        console.error("===================================");
+
+        return { exito: false, error: error?.message ?? String(error) };
+
+    }
 
 }
