@@ -58,3 +58,30 @@ async function guardarResultado(
     await writeFile(RUTA_SALIDA, JSON.stringify(contenido, null, 2));
 
 }
+
+export async function consumirApiExterna() {
+
+    const marcas: Record<string, number> = {};
+
+    marcas["inicio"] = Date.now();
+
+    const respuesta = await obtenerUsuariosDesdeApi();
+    marcas["despuesFetch"] = Date.now();
+
+    const usuarios = await procesarRespuesta(respuesta);
+    marcas["despuesProcesar"] = Date.now();
+
+    await guardarResultado(usuarios, marcas);
+    marcas["final"] = Date.now();
+
+    console.log("===================================");
+    console.log("Consumo de API externa completado");
+    console.log(`Peticion HTTP: ${marcas["despuesFetch"] - marcas["inicio"]} ms`);
+    console.log(`Procesamiento: ${marcas["despuesProcesar"] - marcas["despuesFetch"]} ms`);
+    console.log(`Guardado JSON: ${marcas["final"] - marcas["despuesProcesar"]} ms`);
+    console.log(`Total: ${marcas["final"] - marcas["inicio"]} ms`);
+    console.log("===================================");
+
+    return { exito: true, datos: usuarios, tiempos: marcas };
+
+}
