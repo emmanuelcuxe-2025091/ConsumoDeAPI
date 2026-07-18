@@ -1,6 +1,8 @@
 import { ApiUsuario } from "../models/apiUsuario";
+import { writeFile } from "fs/promises";
 
 const API_URL = "https://jsonplaceholder.typicode.com/users";
+const RUTA_SALIDA = "src/data/apiResultado.json";
 
 async function obtenerUsuariosDesdeApi(): Promise<Response> {
 
@@ -36,5 +38,23 @@ async function procesarRespuesta(respuesta: Response): Promise<ApiUsuario[]> {
     }));
 
     return usuarios;
+
+}
+
+async function guardarResultado(
+    usuarios: ApiUsuario[],
+    tiempos: Record<string, number>
+): Promise<void> {
+
+    const contenido = {
+
+        fecha_consulta: new Date().toISOString(),
+        cantidad_registros: usuarios.length,
+        tiempos_ejecucion_ms: tiempos,
+        datos: usuarios,
+
+    };
+
+    await writeFile(RUTA_SALIDA, JSON.stringify(contenido, null, 2));
 
 }
